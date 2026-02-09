@@ -1,0 +1,24 @@
+``` json
+{
+  "nombreApp": "STEAM-G",
+  "nivel": "basico",
+  "autor": "Valeria C. Z.",
+  "version": "1.0",
+  "fecha": "2025-12-02",
+  "descripcion": "Juego para el desarrollo de habilidades matemáticas",
+  "plataformas": ["android"],
+  "mandalasDisponibles": {
+    "basico": ["arbol1", "flor", "mariposa", "sol", "hoja", "arbol2", "pez", "buho"],
+    "intermedio": ["alegria", "nube", "furia", "miedo", "asco", "sorpresa", "peso", "rubor"],
+    "avanzado": [
+      "hexagonos",
+      "masaico",
+      "constelacion",
+      "galaxia",
+      "laberinto",
+      "corona",
+      "jardin",
+      "octagonal"
+    ]
+  }
+}

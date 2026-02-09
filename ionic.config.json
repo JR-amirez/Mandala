@@ -1,0 +1,7 @@
+{
+  "name": "Mandala",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}

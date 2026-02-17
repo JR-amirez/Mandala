@@ -4068,10 +4068,10 @@ const Home: React.FC<PlayProps> = ({ difficulty = "basic" }) => {
     return paletteColors.find((color) => color.id === selectedColorId) ?? null;
   }, [paletteColors, selectedColorId]);
 
-  const mandalasDisponiblesTexto = useMemo(() => {
+  const numeroEjercicios = useMemo(() => {
     const ids = resolveMandalaIds(currentSettings.mandalasAvailable);
-    return ids.map((id) => mandalasById[id]?.name ?? id).join(", ");
-  }, [currentSettings.mandalasAvailable, mandalasById]);
+    return ids.length;
+  }, [currentSettings.mandalasAvailable]);
 
   useEffect(() => {
     const cargarConfig = async () => {
@@ -4142,9 +4142,16 @@ const Home: React.FC<PlayProps> = ({ difficulty = "basic" }) => {
           setFeedbackMessage("Tiempo agotado");
           setShowFeedback(true);
 
+          const isLast = currentMandalaIndex >= selectedMandalas.length - 1;
+
           const timeoutId = window.setTimeout(() => {
             setShowFeedback(false);
-            setShowSummary(true);
+            if (isLast) {
+              setShowSummary(true);
+            } else {
+              setCurrentMandalaIndex((i) => i + 1);
+              setTiempoRestante(currentSettings.time);
+            }
           }, 1200);
 
           if (transitionTimeoutRef.current) {
@@ -4159,7 +4166,7 @@ const Home: React.FC<PlayProps> = ({ difficulty = "basic" }) => {
     }, 1000);
 
     return () => window.clearInterval(timerId);
-  }, [showStartScreen, showCountdown, showSummary, isPaused]);
+  }, [showStartScreen, showCountdown, showSummary, isPaused, currentMandalaIndex, selectedMandalas.length, currentSettings.time]);
 
   useEffect(() => {
     if (!currentMandalaId) {
@@ -4485,7 +4492,7 @@ const Home: React.FC<PlayProps> = ({ difficulty = "basic" }) => {
                       {total}
                     </p>
                     <p>
-                      <strong>Puntuacion total:</strong> {puntuacionTotal} /{" "}
+                      <strong>Puntuación total:</strong> {puntuacionTotal} /{" "}
                       {total * 10}
                     </p>
 
@@ -4534,7 +4541,7 @@ const Home: React.FC<PlayProps> = ({ difficulty = "basic" }) => {
               <h2
                 style={{ margin: 0, fontWeight: "bold", color: "var(--dark)" }}
               >
-                Reglas Basicas
+                Reglas Básicas
               </h2>
               <IonIcon
                 icon={closeCircleOutline}
@@ -4546,9 +4553,7 @@ const Home: React.FC<PlayProps> = ({ difficulty = "basic" }) => {
             <div className="ins-stats">
               <p style={{ textAlign: "justify" }}>
                 <strong>
-                  Selecciona un color de la paleta y toca las zonas del mandala
-                  para pintarlas. Debes completar todas las areas y verificar
-                  para avanzar.
+                  Colorea las áreas correspondientes siguiendo el número indicado.
                 </strong>
               </p>
             </div>
@@ -4587,9 +4592,9 @@ const Home: React.FC<PlayProps> = ({ difficulty = "basic" }) => {
                 <p className="data">{formatPlataforma(appPlataformas)}</p>
               </div>
               <div className="card">
-                <p className="title">MANDALAS DISPONIBLES</p>
+                <p className="title">NÚMERO DE EJERCICIOS</p>
                 <p className="data">
-                  {mandalasDisponiblesTexto || "Sin configuracion"}
+                  {numeroEjercicios || "Sin configuracion"}
                 </p>
               </div>
               <div className="card description">
@@ -4736,11 +4741,11 @@ const Home: React.FC<PlayProps> = ({ difficulty = "basic" }) => {
               </div>
 
               <div className="num-words">
-                <strong>Puntuacion: {puntuacionTotal}</strong>
+                <strong>Puntuación: {puntuacionTotal}</strong>
               </div>
 
               <div className="rules" onClick={() => setShowInstructions(true)}>
-                Reglas Basicas
+                Reglas Básicas
               </div>
             </div>
 

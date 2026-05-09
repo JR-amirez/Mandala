@@ -7,8 +7,8 @@
   "descripcion": "Juego para el desarrollo de habilidades matematicas",
   "plataformas": ["android"],
   "mandalasDisponibles": {
-    "basico": ["arbol1", "flor", "mariposa", "sol", "hoja", "arbol2", "pez", "buho"],
-    "intermedio": ["alegria", "nube", "furia", "miedo", "asco", "sorpresa", "peso", "rubor"],
-    "avanzado": ["hexagonos", "masaico", "constelacion", "galaxia", "laberinto", "corona", "jardin", "octagonal"]
+    "basico": ["nat1", "nat2", "nat3", "nat4", "nat5", "nat6", "nat7", "nat8"],
+    "intermedio": ["emo1", "emo2", "emo3", "emo4", "emo5", "emo6", "emo7", "emo8"],
+    "avanzado": ["geo1", "geo2", "geo3", "geo4", "geo5", "geo6", "geo7", "geo8"]
   }
 }
